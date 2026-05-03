@@ -1,5 +1,5 @@
-exports.handler = async () => {
-  const endpoint = 'https://【サービスID】.microcms.io/api/v1/news';
+export const handler = async () => {
+  const endpoint = 'https://YOUR-SERVICE-ID.microcms.io/api/v1/news';
 
   try {
     const res = await fetch(endpoint, {
@@ -12,6 +12,10 @@ exports.handler = async () => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       body: JSON.stringify(data)
     };
 
@@ -19,7 +23,8 @@ exports.handler = async () => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: error.message
+        error: 'Failed to fetch',
+        detail: error.message
       })
     };
   }
