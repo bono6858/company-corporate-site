@@ -1,32 +1,24 @@
-export const handler = async () => {
-  console.log("API KEY:", process.env.MICROCMS_API_KEY);
-
+exports.handler = async () => {
   const endpoint = 'https://bonobo.microcms.io/api/v1/news';
 
-  const res = await fetch(endpoint, {
-    headers: {
-      'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
-    }
-  });
+  try {
+    const res = await fetch(endpoint, {
+      headers: {
+        'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
+      }
+    });
 
     const data = await res.json();
 
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     };
 
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: 'Failed to fetch',
-        detail: error.message
-      })
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
