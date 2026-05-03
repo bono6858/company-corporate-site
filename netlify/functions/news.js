@@ -1,5 +1,5 @@
 export const handler = async () => {
-  const endpoint = 'https://YOUR-SERVICE-ID.microcms.io/api/v1/news';
+  const endpoint = 'https://bonobo.microcms.io/api/v1/news';
 
   try {
     const res = await fetch(endpoint, {
