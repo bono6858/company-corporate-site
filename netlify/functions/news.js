@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 exports.handler = async () => {
   const endpoint = 'https://【サービスID】.microcms.io/api/v1/news';
 
@@ -20,7 +18,9 @@ exports.handler = async () => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch' })
+      body: JSON.stringify({
+        error: error.message
+      })
     };
   }
 };
