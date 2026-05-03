@@ -1,12 +1,13 @@
 export const handler = async () => {
+  console.log("API KEY:", process.env.MICROCMS_API_KEY);
+
   const endpoint = 'https://bonobo.microcms.io/api/v1/news';
 
-  try {
-    const res = await fetch(endpoint, {
-      headers: {
-        'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
-      }
-    });
+  const res = await fetch(endpoint, {
+    headers: {
+      'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY
+    }
+  });
 
     const data = await res.json();
 
