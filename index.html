@@ -670,19 +670,18 @@
             }
         ]`;
 
-        async function fetchNewsData() {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    try {
-                        const data = JSON.parse(dummyNewsJSON);
-                        resolve(data);
-                    } catch (error) {
-                        reject("Failed to parse news data.");
-                    }
-                }, 600);
-            });
-        }
 
+	async function fetchNewsData() {
+	const res = await fetch('/.netlify/functions/get-news');
+
+	if (!res.ok) {
+        throw new Error('Failed to fetch news');
+	}
+
+    	return await res.json();
+	}
+
+        
         async function renderNews() {
             const container = document.getElementById('news-container');
             try {
