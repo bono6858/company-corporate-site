@@ -329,7 +329,7 @@
                                 個と組織、それぞれの強みを最大化できる環境を整えています。Bonoboには、多様なバックボーンを持つ優秀な人材が集まっています。
                             </p>
                             <a href="https://www.seikohd.com/culture/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-accent2 transition-colors group/link w-fit">
-                                Read more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover/link:translate-x-1"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                Read more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover/link:translate-x-1"><path d="M5 12h14"></path><path d="m12(5) 7 7-7 7"></path></svg>
                             </a>
                         </div>
                     </div>
@@ -703,11 +703,13 @@
         const miniHeader = document.getElementById('mini-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
+                // スクロール時：ミニヘッダーに背景とシャドウを付与
                 miniHeader.style.background = 'rgba(255, 255, 255, 0.85)';
                 miniHeader.style.backdropFilter = 'blur(16px)';
                 miniHeader.classList.add('shadow-xl');
                 miniHeader.style.height = '70px';
             } else {
+                // 初期状態：背景なし
                 miniHeader.style.background = 'transparent';
                 miniHeader.style.backdropFilter = 'none';
                 miniHeader.classList.remove('shadow-xl');
@@ -743,13 +745,11 @@
         // 5. News Fetch & Render Logic (Fixed relative URL error)
         async function fetchNewsData() {
             try {
-                // ローカルやプレビュー環境で相対パスのパースに失敗する場合があるため、try-catchでガード
                 const res = await fetch('/.netlify/functions/news');
                 if (res.ok) {
                     return await res.json();
                 }
             } catch (error) {
-                // APIエンドポイントが利用できない場合はダミーデータを返す
             }
             return { contents: JSON.parse(dummyNewsJSON) };
         }
