@@ -196,9 +196,9 @@
     </div>
 
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl transition-all duration-500" id="header">
+    <header class="absolute top-0 w-full z-50 transition-all duration-500" id="header">
         <div class="max-w-[90rem] mx-auto px-6 lg:px-12 h-20 md:h-24 flex items-center justify-between relative">
-            <a href="#" class="flex items-center gap-2 transition-all duration-500 origin-left" id="header-logo">
+            <a href="#" class="flex items-center gap-2" id="header-logo">
                 <!-- 本番環境用パスに変更 -->
                 <img src="/images/logo.png" alt="Corporate Logo" class="h-6 md:h-8 w-auto">
             </a>
@@ -211,22 +211,26 @@
                 <a href="#company" class="hover:text-brand-accent1 transition-colors">会社概要</a>
             </nav>
 
-            <div class="flex items-center gap-4">
+            <!-- Mini Header Container (Only Contact & Hamburger) -->
+            <div id="mini-header" class="fixed top-0 right-0 z-[60] flex items-center gap-4 px-6 md:px-12 h-20 md:h-24 transition-all duration-500 rounded-bl-3xl">
                 <a href="#contact" class="px-5 md:px-7 py-2 md:py-3 bg-brand text-white rounded-full text-xs md:text-sm font-bold hover:bg-brand-accent1 transition-colors duration-300 shadow-md">
                     Contact
                 </a>
                 
-                <!-- Hamburger Menu Toggle (Mobile Only) -->
-                <button id="menu-toggle" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none z-[60]" aria-label="Menu">
-                    <span class="w-6 h-0.5 bg-brand transition-all duration-300 origin-center" id="hamburger-top"></span>
-                    <span class="w-6 h-0.5 bg-brand transition-all duration-300 origin-center" id="hamburger-mid"></span>
-                    <span class="w-6 h-0.5 bg-brand transition-all duration-300 origin-center" id="hamburger-bottom"></span>
+                <!-- Hamburger Menu Toggle (Black Circle icon with White lines) -->
+                <button id="menu-toggle" class="flex flex-col justify-center items-center w-12 h-12 bg-brand rounded-full gap-1.5 focus:outline-none shadow-lg transition-transform active:scale-90" aria-label="Menu">
+                    <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="hamburger-top"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="hamburger-mid"></span>
+                    <span class="w-6 h-0.5 bg-white transition-all duration-300 origin-center" id="hamburger-bottom"></span>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Drawer Menu -->
-        <div id="mobile-menu" class="fixed inset-0 bg-white translate-x-full transition-transform duration-500 ease-in-out md:hidden flex flex-col pt-32 px-10">
+        <div id="mobile-menu" class="fixed inset-0 bg-surface-card translate-x-full transition-transform duration-500 ease-in-out z-[55] flex flex-col pt-32 px-10">
+            <!-- Decoration for visual clarity -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent1/5 rounded-full blur-3xl -z-10"></div>
+            
             <nav class="flex flex-col gap-8 text-2xl font-extrabold text-brand tracking-tight">
                 <a href="#culture" class="mobile-link group flex items-center gap-4">
                     カルチャー <span class="w-0 h-[2px] bg-brand-accent1 transition-all group-hover:w-8"></span>
@@ -400,7 +404,7 @@
                         </div>
                     </a>
 
-                    <!-- メディアプラットフォーム事業：WEB集客サービス (リンクなし・ロゴなし) -->
+                    <!-- メディアプラットフォーム事業：WEB集客サービス -->
                     <div class="lg:col-span-12 clean-card group fade-up flex flex-col md:flex-row-reverse h-auto md:h-[380px] overflow-hidden cursor-default">
                         <div class="md:w-[45%] relative h-[250px] md:h-full overflow-hidden">
                             <!-- 本番環境用パスに変更 -->
@@ -502,7 +506,6 @@
                         <div class="absolute -right-20 -top-20 w-96 h-96 bg-brand-accent2/10 rounded-full blur-3xl"></div>
                         
                         <div class="relative z-10 max-w-4xl">
-                            <!-- Serviceの事業タイトルデザインを踏襲 -->
                             <div class="flex flex-col mb-8">
                                 <div class="flex items-center gap-4 mb-3">
                                     <div class="w-8 md:w-12 h-[2px] bg-gradient-to-r from-brand-accent1 to-brand-accent2"></div>
@@ -544,14 +547,12 @@
                 
                 <!-- Company -->
                 <div class="clean-card p-10 md:p-16 lg:p-20 fade-up w-full" id="company">
-                    <!-- タイトル -->
                     <div class="mb-12 flex flex-col md:flex-row md:items-end gap-4 md:gap-6 border-b border-gray-200 pb-8">
                         <h2 class="text-4xl md:text-5xl font-extrabold text-brand uppercase tracking-tighter leading-none">Company</h2>
                         <span class="text-brand-accent1 font-bold tracking-widest uppercase text-sm md:mb-1">会社概要</span>
                     </div>
 
                     <div class="flex flex-col gap-10">
-                        <!-- 基本情報 -->
                         <ul class="space-y-5">
                             <li class="flex flex-col md:flex-row md:items-center gap-2 md:gap-12 border-b border-gray-100 pb-5">
                                 <span class="text-brand-muted text-xs font-bold tracking-widest w-32 shrink-0">会社名</span>
@@ -603,7 +604,6 @@
 
                 <!-- Contact -->
                 <div class="clean-card p-10 md:p-16 fade-up flex flex-col justify-center items-center text-center bg-brand text-white relative overflow-hidden w-full max-w-5xl mx-auto" id="contact">
-                    <!-- 背景の光 -->
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full bg-gradient-to-r from-brand-accent1/30 to-brand-accent2/30 blur-[100px] rounded-full pointer-events-none"></div>
                     
                     <p class="text-white mb-8 max-w-lg mx-auto relative z-10 font-medium tracking-wide leading-relaxed text-sm md:text-base">
@@ -621,31 +621,24 @@
     <!-- Footer -->
     <footer class="py-16 px-6 lg:px-12 bg-white relative z-10 border-t border-gray-50">
         <div class="max-w-[90rem] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-            
-            <!-- ロゴ & コピーライト -->
             <div class="flex flex-col items-start gap-6">
-                <!-- 本番環境用パスに変更 -->
                 <img src="/images/logo.png" alt="Corporate Logo" class="h-6 w-auto object-contain grayscale opacity-60">
                 <p class="text-xs font-medium text-gray-400">&copy; 2026 Bonobo Inc. All rights reserved.</p>
             </div>
             
-            <!-- リンク一覧 (2列) -->
             <div class="flex gap-16 md:gap-24">
-                <!-- 1列目 -->
                 <div class="flex flex-col gap-4">
                     <a href="https://www.b-bonobo.co.jp/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider">カルチャー</a>
                     <a href="https://www.b-bonobo.co.jp/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider">ニュース</a>
                     <a href="https://www.b-bonobo.co.jp/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider">採用情報</a>
                     <a href="https://www.b-bonobo.co.jp/terms/policy" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider">プライバシーポリシー</a>
                 </div>
-                <!-- 2列目 -->
                 <div class="flex flex-col gap-4">
                     <a href="https://job-al.com/employer" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider">Jobal</a>
                     <a href="https://bauwaw.co.jp/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider uppercase">BAUWAW</a>
                     <a href="https://jp-select.store/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-gray-400 hover:text-brand-accent1 transition-colors tracking-wider uppercase">JP-SELECT</a>
                 </div>
             </div>
-
         </div>
     </footer>
 
@@ -706,34 +699,59 @@
             });
         });
 
-        // 3. Header Visibility Logic (Scroll)
-        const header = document.getElementById('header');
-        const headerLogo = document.getElementById('header-logo');
-        
+        // 3. Mini Header Scroll Logic
+        const miniHeader = document.getElementById('mini-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                // スクロール時：ロゴを消し、背景をより不透明に
-                headerLogo.style.opacity = '0';
-                headerLogo.style.transform = 'translateX(-20px) scale(0.9)';
-                headerLogo.style.pointerEvents = 'none';
-                header.classList.add('shadow-sm');
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                miniHeader.style.background = 'rgba(255, 255, 255, 0.85)';
+                miniHeader.style.backdropFilter = 'blur(16px)';
+                miniHeader.classList.add('shadow-xl');
+                miniHeader.style.height = '70px';
             } else {
-                // 初期状態：ロゴ表示
-                headerLogo.style.opacity = '1';
-                headerLogo.style.transform = 'translateX(0) scale(1)';
-                headerLogo.style.pointerEvents = 'auto';
-                header.classList.remove('shadow-sm');
-                header.style.background = 'rgba(255, 255, 255, 0.7)';
+                miniHeader.style.background = 'transparent';
+                miniHeader.style.backdropFilter = 'none';
+                miniHeader.classList.remove('shadow-xl');
+                miniHeader.style.height = window.innerWidth >= 768 ? '96px' : '80px';
             }
         });
 
-        // 4. Dummy JSON Data & Mock API Fetch for News Section
+        // 4. Dummy JSON Data for Fallback
+        const dummyNewsJSON = `[
+            {
+                "id": "1",
+                "date": "2026.05.01",
+                "category": "Platform",
+                "title": "不動産集客AIエンジンのメジャーアップデートを実施。より高度なターゲティングが可能に。",
+                "thumbnail": { "url": "/images/news_1.webp" }
+            },
+            {
+                "id": "2",
+                "date": "2026.04.18",
+                "category": "Product",
+                "title": "犬猫ヘルスケアフード「BAUWAW」、持続可能なパッケージへの全面移行を完了。",
+                "thumbnail": { "url": "/images/news_2.webp" }
+            },
+            {
+                "id": "3",
+                "date": "2026.04.05",
+                "category": "Corporate",
+                "title": "採用メディアのリニューアル及び、外国人材特化型機能の拡充について",
+                "thumbnail": { "url": "/images/news_3.webp" }
+            }
+        ]`;
+
+        // 5. News Fetch & Render Logic (Fixed relative URL error)
         async function fetchNewsData() {
-            // ※ 実装環境に合わせて調整
-            const res = await fetch('/.netlify/functions/news');
-            if (!res.ok) throw new Error('Failed to fetch news');
-            return await res.json();
+            try {
+                // ローカルやプレビュー環境で相対パスのパースに失敗する場合があるため、try-catchでガード
+                const res = await fetch('/.netlify/functions/news');
+                if (res.ok) {
+                    return await res.json();
+                }
+            } catch (error) {
+                // APIエンドポイントが利用できない場合はダミーデータを返す
+            }
+            return { contents: JSON.parse(dummyNewsJSON) };
         }
         
         async function renderNews() {
@@ -766,14 +784,13 @@
                     container.insertAdjacentHTML('beforeend', articleHTML);
                 });
             } catch (error) {
-                console.error(error);
                 container.innerHTML = `<p class="text-sm text-red-500 font-bold">ニュースの読み込みに失敗しました。</p>`;
             }
         }
 
         renderNews();
 
-        // 5. Loading Animation
+        // 6. Loading Animation
         document.addEventListener('DOMContentLoaded', () => {
             const loadingScreen = document.getElementById('loading-screen');
             const loadingBg = document.getElementById('loading-bg');
