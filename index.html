@@ -212,7 +212,8 @@
             </nav>
 
             <!-- Mini Header Container (Only Contact & Hamburger) -->
-            <div id="mini-header" class="fixed top-0 right-0 z-[60] flex items-center gap-4 px-6 md:px-12 h-20 md:h-24 transition-all duration-500 rounded-bl-3xl">
+            <!-- White background and shadow removed for transparent look -->
+            <div id="mini-header" class="fixed top-0 right-0 z-[60] flex items-center gap-4 px-6 md:px-12 h-20 md:h-24 transition-all duration-500">
                 <a href="#contact" class="px-5 md:px-7 py-2 md:py-3 bg-brand text-white rounded-full text-xs md:text-sm font-bold hover:bg-brand-accent1 transition-colors duration-300 shadow-md">
                     Contact
                 </a>
@@ -703,13 +704,13 @@
         const miniHeader = document.getElementById('mini-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                // スクロール時：ミニヘッダーに背景とシャドウを付与
-                miniHeader.style.background = 'rgba(255, 255, 255, 0.85)';
-                miniHeader.style.backdropFilter = 'blur(16px)';
-                miniHeader.classList.add('shadow-xl');
+                // スクロール時も背景を透明に維持
+                miniHeader.style.background = 'transparent';
+                miniHeader.style.backdropFilter = 'none';
+                miniHeader.classList.remove('shadow-xl');
                 miniHeader.style.height = '70px';
             } else {
-                // 初期状態：背景なし
+                // 初期状態
                 miniHeader.style.background = 'transparent';
                 miniHeader.style.backdropFilter = 'none';
                 miniHeader.classList.remove('shadow-xl');
