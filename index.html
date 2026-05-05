@@ -681,33 +681,44 @@
     	return await res.json();
 	}
         
-        async function renderNews() {
-            const container = document.getElementById('news-container');
-            try {
-                const newsData = await fetchNewsData();
-                container.innerHTML = '';
-                
-                newsData.forEach((news) => {
-                    const articleHTML = `
-                        <a href="${news.url}" class="group flex gap-4 p-3 rounded-2xl bg-white hover:bg-yellow-50/80 transition-all border border-gray-100 hover:border-yellow-200 hover:shadow-md">
-                            <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-xl overflow-hidden relative">
-                                <img src="${news.image}" alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            </div>
-                            <div class="flex flex-col justify-center flex-1 py-1">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <span class="text-[9px] font-bold text-brand-accent1 uppercase tracking-widest bg-yellow-50 px-2 py-0.5 rounded-sm">${news.category}</span>
-                                    <span class="text-[10px] font-mono font-bold text-gray-400">${news.date}</span>
-                                </div>
-                                <h4 class="text-sm font-extrabold text-brand group-hover:text-brand-accent1 transition-colors leading-relaxed line-clamp-2">${news.title}</h4>
-                            </div>
-                        </a>
-                    `;
-                    container.insertAdjacentHTML('beforeend', articleHTML);
-                });
-            } catch (error) {
-                container.innerHTML = `<p class="text-sm text-red-500 font-bold">ニュースの読み込みに失敗しました。</p>`;
-            }
-        }
+       async function renderNews() {
+    const container = document.getElementById('news-container');
+
+    try {
+        const newsData = await fetchNewsData();
+        const newsList = newsData.contents;
+
+        container.innerHTML = '';
+
+        newsList.forEach((news) => {
+            const articleHTML = `
+                <a href="#" class="group flex gap-4 p-3 rounded-2xl bg-white hover:bg-yellow-50/80 transition-all border border-gray-100 hover:border-yellow-200 hover:shadow-md">
+                    <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-xl overflow-hidden relative">
+                        <img src="${news.thumbnail?.url || ''}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center flex-1 py-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-[9px] font-bold text-brand-accent1 uppercase tracking-widest bg-yellow-50 px-2 py-0.5 rounded-sm">
+                                ${news.category || 'News'}
+                            </span>
+                            <span class="text-[10px] font-mono font-bold text-gray-400">
+                                ${new Date(news.date).toLocaleDateString('ja-JP')}
+                            </span>
+                        </div>
+                        <h4 class="text-sm font-extrabold text-brand">
+                            ${news.title}
+                        </h4>
+                    </div>
+                </a>
+            `;
+            container.insertAdjacentHTML('beforeend', articleHTML);
+        });
+
+    } catch (error) {
+        console.error(error);
+        container.innerHTML = `<p class="text-sm text-red-500 font-bold">ニュースの読み込みに失敗しました。</p>`;
+    }
+}
 
         renderNews();
 
